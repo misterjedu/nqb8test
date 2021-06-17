@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "606166608630",
+    "project_id": "nqb8-1623918056342",
+    "storage_bucket": "nqb8-1623918056342.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606166608630:android:6193d7fcd9388d0c251ad7",
+        "android_client_info": {
+          "package_name": "com.oladokun.nqb8"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606166608630-bi7mgbqj1qg3h3t596ons9hugh5k14mc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGseJ_Ianj0Ijo0GBCMn7q8_y1rl4nXeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606166608630-bi7mgbqj1qg3h3t596ons9hugh5k14mc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
