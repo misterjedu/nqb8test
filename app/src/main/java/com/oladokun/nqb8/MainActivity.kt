@@ -51,6 +51,12 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "An error occured", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+        binding.notificationButton.setOnClickListener {
+            Toast.makeText(this, "Still implementing", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
 
