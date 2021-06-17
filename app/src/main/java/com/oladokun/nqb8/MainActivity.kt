@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 import com.oladokun.nqb8.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var googleSignInClient: GoogleSignInClient? = null
     private val RC_SIGN_IN: Int = 1
+    private val dbUserDetail = FirebaseDatabase.getInstance().getReference(USER_DETAILS)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
-
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -69,17 +70,29 @@ class MainActivity : AppCompatActivity() {
         try {
             val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
             if (account != null) {
-                //Get all the infos here and do save to firebase
 
-                account.givenName
-                account.email
-                account.displayName
+                //Get all the infos here and do save to firebase
+                addUserDetails(UserDetail(account.displayName, account.givenName, account.email))
             }
 
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             Snackbar.make(binding.signInWithGoogleButton, "An error occured", Snackbar.LENGTH_LONG)
         }
+    }
+
+
+    //Add Details to firebase
+    private fun addUserDetails(detial: UserDetail) {
+        detial.id = dbUserDetail.push().key
+        dbUserDetail.child(detial.id!!).setValue(detial)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Not Saved", Toast.LENGTH_SHORT).show()
+                    }
+                }
     }
 
 
